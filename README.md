@@ -35,7 +35,7 @@ Once the extension is installed, simply use it in your code by  :
          'content' => '', // some content in body
          'footer' => false, // show footer or false not showing
          'footerTitle' => 'text', // Title for footer
-         'type' => true, // get style for panel \beatep\panel::TYPE_DEFAULT  default
+         'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
 ]); ?>
 
 
@@ -46,7 +46,7 @@ Or can use begin and end of the widget
          'headerTitle' => 'title', // Title text can use tag
          'footer' => false, // show footer or false not showing
          'footerTitle' => 'text', // Title for footer
-         'type' => true, // get style for panel \beatep\panel::TYPE_DEFAULT  default
+         'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
 ]); ?>
 
 ...
