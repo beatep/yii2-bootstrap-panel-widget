@@ -6,10 +6,11 @@
  * @version   1.0.0
  */
 
-namespace amass\panel;
+namespace beatep\panel;
 
 use yii\bootstrap\Widget;
 use yii\helpers\Html;
+use yii\base\InvalidConfigException;
 
 class Panel extends Widget
 {
@@ -22,7 +23,15 @@ class Panel extends Widget
     /** @var $headerTitle string the panel-title */
     public $headerTitle;
     /** @var $header bool showing header */
-    public $header = true;
+    public $header = true;    
+	/**
+	 * @var string
+	 * The class icon to display in the header title of the panel.
+	 * @see <http://getbootstrap.com/components/#glyphicons> or <http://fontawesome.io/icons/>
+	 */
+	public $headerIcon;
+	/** @var $headerButtons array */
+	public $headerButtons = array();
     /** @var $content mixed */
     public $content;
     /** @var $footer bool showing footer*/
@@ -47,6 +56,7 @@ class Panel extends Widget
      */
     public function init()
     {
+	    parent::init();
         $this->_initOptions();
         echo Html::beginTag('div',$this->options);
 
@@ -64,6 +74,7 @@ class Panel extends Widget
         echo Html::endTag('div');
         $this->_initFooter();
         echo Html::endTag('div');
+        
     }
 
     /**
@@ -75,7 +86,7 @@ class Panel extends Widget
             $this->options['id'] = $this->getId();
         }
         if (!isset($this->options['class'])) {
-            $this->options['class'] = ' panel panel-'.$this->type;
+            $this->options['class'] = 'panel panel-'.$this->type;
         }
         $view = $this->getView();
 
@@ -87,8 +98,16 @@ class Panel extends Widget
      */
     private function _initHeader(){
 
-        if($this->header)
-            echo Html::tag('div', Html::tag('h3',$this->headerTitle, ['class' => 'panel-title']), ['class' => 'panel-heading']);
+        if($this->header) {
+	        $icon = '';
+    		if ($this->headerIcon) {
+				if (strpos($this->headerIcon, 'icon') === false && strpos($this->headerIcon, 'fa') === false)
+					$icon = '<span class="glyphicon glyphicon-' . $this->headerIcon . '"></span> ';
+				else
+					$icon = '<i class="' . $this->headerIcon . '"></i> ';
+			}	        
+            echo Html::tag('div', $this->renderButtons().Html::tag('h3', $icon.$this->headerTitle, ['class' => 'panel-title', 'style' => 'display: inline;']), ['class' => 'panel-heading']);
+        }
     }
 
     /**
@@ -96,6 +115,26 @@ class Panel extends Widget
      */
     private function _initFooter(){
         if($this->footer)
-            Html::tag('div', $this->footerTitle, ['class' => 'panel-footer']);
+            echo Html::tag('div', $this->footerTitle, ['class' => 'panel-footer']);
     }
+    
+    private function renderButtons() {
+		
+		if (empty($this->headerButtons))
+			return;
+
+		$return = '<div class="pull-right">';
+
+		if (!empty($this->headerButtons) && is_array($this->headerButtons)) {
+			
+			foreach ($this->headerButtons as $options) {
+								
+				$return .= Html::a($options['label'], $options['url'], $options['options']); 
+			}
+		}
+		$return .= '</div>';
+		return  $return;
+	}
+
+    
 }
