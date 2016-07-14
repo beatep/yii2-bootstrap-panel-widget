@@ -1,6 +1,6 @@
 Yii2 Bootstrap Panel
 ===================
-Yii2 Bootstrap Panel
+Yii2 Bootstrap Panel with posibility to add icons and/or buttons in header
 
 Installation
 ------------
@@ -32,9 +32,15 @@ Once the extension is installed, simply use it in your code by  :
 <?php \beatep\panel\Panel::widget([
          'header' => true, // show header or false not showing
          'headerTitle' => 'title', // Title text can use tag
+         'headerIcon' => 'tint', //optional
+         'headerButtons' => [
+		[
+			'label' => '+',
+			'options' => ['class' => 'btn btn-xs btn-primary'],
+			'url' => '/controller/new',
+		],
+	], //optional
          'content' => '', // some content in body
-         'footer' => false, // show footer or false not showing
-         'footerTitle' => 'text', // Title for footer
          'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
 ]); ?>
 
@@ -44,9 +50,9 @@ Or can use begin and end of the widget
 <?php \beatep\panel\Panel::begin([
          'header' => true, // show header or false not showing
          'headerTitle' => 'title', // Title text can use tag
-         'footer' => false, // show footer or false not showing
+         'footer' => true, // show footer or false not showing
          'footerTitle' => 'text', // Title for footer
-         'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
+         'type' => 'success', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
 ]); ?>
 
 ...
