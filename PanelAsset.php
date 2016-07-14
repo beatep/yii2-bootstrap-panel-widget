@@ -6,7 +6,7 @@
  * @version   1.0.0
  */
 
-namespace amass\panel;
+namespace beatep\panel;
 
 use yii\web\AssetBundle;
 
