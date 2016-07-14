@@ -30,18 +30,18 @@ Once the extension is installed, simply use it in your code by  :
 
 ```php
 <?php \beatep\panel\Panel::widget([
-         'header' => true, // show header or false not showing
-         'headerTitle' => 'title', // Title text can use tag
-         'headerIcon' => 'tint', //optional
-         'headerButtons' => [
-		[
-			'label' => '+',
-			'options' => ['class' => 'btn btn-xs btn-primary'],
-			'url' => '/controller/new',
-		],
-	], //optional
-         'content' => '', // some content in body
-         'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
+        'header' => true, // show header or false not showing
+        'headerTitle' => 'title', // Title text can use tag
+        'headerIcon' => 'tint', //optional
+        'headerButtons' => [
+               [
+	              'label' => '+',
+	              'options' => ['class' => 'btn btn-xs btn-primary'],
+	              'url' => '/controller/new',
+              ],
+       ], //optional
+        'content' => '', // some content in body
+        'type' => 'danger', // get style for panel \beatep\panel::TYPE_DEFAULT, 'default' is default
 ]); ?>
 
 
